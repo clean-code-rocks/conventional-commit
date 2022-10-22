@@ -16,7 +16,7 @@ Java 8+
 <dependency>
     <groupId>rocks.cleancode</groupId>
     <artifactId>conventional-commit</artifactId>
-    <version>{{VERSION}}</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
