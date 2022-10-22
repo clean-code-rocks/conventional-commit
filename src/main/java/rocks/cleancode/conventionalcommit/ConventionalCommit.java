@@ -121,12 +121,12 @@ public class ConventionalCommit {
     private String footerToString() {
         return footer().entrySet()
             .stream()
-            .map(join(": "))
+            .map(joinFooterEntry())
             .collect(joining(NEWLINE, DOUBLE_NEWLINE, EMPTY_STRING));
     }
 
-    private Function<Map.Entry<String, String>, String> join(String separator) {
-        return entry -> format("%s%s%s", entry.getKey(), separator, entry.getValue());
+    private Function<Map.Entry<String, String>, String> joinFooterEntry() {
+        return entry -> format("%s%s%s", entry.getKey(), ": ", entry.getValue());
     }
 
     private Function<String, String> surrounded(String prefix, String suffix) {
