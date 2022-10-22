@@ -2,8 +2,31 @@ package rocks.cleancode.conventionalcommit;
 
 import java.util.Optional;
 
+/**
+ * <p>Conventional commit message parser.</p>
+ *
+ * <p>Based on specification <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits v1.0.0</a>.</p>
+ *
+ * @since 1.0.0
+ */
 public class ConventionalCommitParser {
 
+    /**
+     * Default constructor.
+     *
+     * @since 1.0.0
+     */
+    public ConventionalCommitParser() {
+    }
+
+    /**
+     * Parse raw conventional commit message.
+     *
+     * @param fullCommitMessage Raw conventional commit message
+     * @return Parsed conventional commit message
+     *
+     * @since 1.0.0
+     */
     public ConventionalCommit parse(String fullCommitMessage) {
         ConventionalCommitMessage message = new ConventionalCommitMessage(fullCommitMessage);
 
