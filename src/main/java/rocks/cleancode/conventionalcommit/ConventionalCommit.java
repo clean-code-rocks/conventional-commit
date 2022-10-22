@@ -2,7 +2,6 @@ package rocks.cleancode.conventionalcommit;
 
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.function.Predicate;
 
 import static java.lang.String.format;
@@ -100,7 +99,7 @@ public class ConventionalCommit {
 
     private String scopeToString() {
         return scope()
-            .map(surroundScope())
+            .map(this::surroundScope)
             .orElse(EMPTY_STRING);
     }
 
@@ -121,16 +120,16 @@ public class ConventionalCommit {
     private String footerToString() {
         return footer().entrySet()
             .stream()
-            .map(joinFooterEntry())
+            .map(this::joinFooterEntry)
             .collect(joining(NEWLINE, DOUBLE_NEWLINE, EMPTY_STRING));
     }
 
-    private Function<Map.Entry<String, String>, String> joinFooterEntry() {
-        return entry -> format("%s%s%s", entry.getKey(), ": ", entry.getValue());
+    private String joinFooterEntry(Map.Entry<String, String> entry) {
+        return format("%s%s%s", entry.getKey(), ": ", entry.getValue());
     }
 
-    private Function<String, String> surroundScope() {
-        return input -> format("(%s)", input);
+    private String surroundScope(String scope) {
+        return format("(%s)", scope);
     }
 
 }
