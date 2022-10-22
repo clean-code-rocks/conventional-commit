@@ -8,6 +8,10 @@
     <artifactId>conventional-commit</artifactId>
     <version>1.0.0</version>
 
+    <name>Conventional commit</name>
+    <description>Tool to manage conventional commit messages</description>
+    <url>https://github.com/clean-code-rocks/conventional-commit</url>
+
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
