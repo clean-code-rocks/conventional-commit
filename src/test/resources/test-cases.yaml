@@ -35,10 +35,10 @@
 - name: With body
   message: |
     feat: My new feature
-    
+
     This body contains the description
     of the new feature
-    
+
     And this paragraph is for some more
     check
   expected:
@@ -47,14 +47,14 @@
     body: |
       This body contains the description
       of the new feature
-      
+
       And this paragraph is for some more
       check
 
 - name: With footer
   message: |
     feat: My new feature
-    
+
     Reviewed-by: John DOE
     Refs: #123
   expected:
@@ -67,7 +67,7 @@
 - name: Breaking change with footer
   message: |
     fix: Breaking change in the footer
-    
+
     Reviewed-by: John DOE
     BREAKING CHANGE: This footer describes the breaking change
   expected:
@@ -81,10 +81,10 @@
 - name: Body with colon (:)
   message: |
     ci: Added CI workflow
-    
+
     This message contains a colon for a
     more precise description
-    
+
     For testing : it must be in the body
   expected:
     type: ci
@@ -92,19 +92,19 @@
     body: |
       This message contains a colon for a
       more precise description
-      
+
       For testing : it must be in the body
 
 - name: With body and footer
   message: |
     feat: My new feature
-    
+
     This body contains the description
     of the new feature
-    
+
     And this paragraph is for some more
     check
-    
+
     Reviewed-by: John DOE
     Refs: #123
   expected:
@@ -113,7 +113,7 @@
     body: |
       This body contains the description
       of the new feature
-      
+
       And this paragraph is for some more
       check
     footer:
