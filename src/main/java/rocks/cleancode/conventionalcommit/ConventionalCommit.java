@@ -2,11 +2,19 @@ package rocks.cleancode.conventionalcommit;
 
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 import static java.lang.String.format;
+import static java.util.stream.Collectors.joining;
 
 public class ConventionalCommit {
+
+    public static final String EMPTY_STRING = "";
+
+    public static final String NEWLINE = format("%n");
+
+    public static final String DOUBLE_NEWLINE = NEWLINE + NEWLINE;
 
     private final String type;
 
@@ -21,12 +29,12 @@ public class ConventionalCommit {
     private final Map<String, String> footer;
 
     public ConventionalCommit(
-            String type,
-            String scope,
-            boolean exclamation,
-            String description,
-            String body,
-            Map<String, String> footer
+        String type,
+        String scope,
+        boolean exclamation,
+        String description,
+        String body,
+        Map<String, String> footer
     ) {
         this.type = type;
         this.scope = scope;
@@ -54,7 +62,7 @@ public class ConventionalCommit {
 
     public Optional<String> body() {
         return Optional.ofNullable(body)
-                .filter(this::isNotBlank);
+            .filter(this::isNotBlank);
     }
 
     public Map<String, String> footer() {
@@ -67,9 +75,9 @@ public class ConventionalCommit {
 
     private boolean isNotBlank(String string) {
         return Optional.ofNullable(string)
-                .map(String::trim)
-                .filter(isEmpty().negate())
-                .isPresent();
+            .map(String::trim)
+            .filter(isEmpty().negate())
+            .isPresent();
     }
 
     public boolean breakingChange() {
@@ -79,11 +87,50 @@ public class ConventionalCommit {
     @Override
     public String toString() {
         return format(
-            "%s%s: %s",
-            type,
-            scope().map(scope -> format("(%s)", scope)).orElse(""),
-            description
-        );
+                "%s%s%s: %s%s%s",
+                type,
+                scopeToString(),
+                exclamationToString(),
+                description,
+                bodyToString(),
+                footerToString()
+            )
+            .trim();
+    }
+
+    private String scopeToString() {
+        return scope()
+            .map(surrounded("(", ")"))
+            .orElse(EMPTY_STRING);
+    }
+
+    private String exclamationToString() {
+        if (exclamation) {
+            return "!";
+        }
+
+        return EMPTY_STRING;
+    }
+
+    private String bodyToString() {
+        return body()
+            .map(DOUBLE_NEWLINE::concat)
+            .orElse(EMPTY_STRING);
+    }
+
+    private String footerToString() {
+        return footer().entrySet()
+            .stream()
+            .map(join(": "))
+            .collect(joining(NEWLINE, DOUBLE_NEWLINE, EMPTY_STRING));
+    }
+
+    private Function<Map.Entry<String, String>, String> join(String separator) {
+        return entry -> format("%s%s%s", entry.getKey(), separator, entry.getValue());
+    }
+
+    private Function<String, String> surrounded(String prefix, String suffix) {
+        return input -> format("%s%s%s", prefix, input, suffix);
     }
 
 }

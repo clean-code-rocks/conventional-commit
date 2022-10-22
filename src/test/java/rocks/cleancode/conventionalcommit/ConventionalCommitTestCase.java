@@ -112,7 +112,7 @@ public class ConventionalCommitTestCase {
             @JsonProperty("expected") Expectation expectation
     ) {
         this.name = name;
-        this.message = message;
+        this.message = message.trim();
         this.expected = expectation;
     }
 
