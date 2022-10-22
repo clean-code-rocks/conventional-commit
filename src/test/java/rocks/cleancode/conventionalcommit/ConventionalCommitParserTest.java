@@ -1,16 +1,10 @@
 package rocks.cleancode.conventionalcommit;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
 import java.util.stream.Stream;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -64,7 +58,7 @@ class ConventionalCommitParserTest {
     }
 
     @ParameterizedTest
-    @MethodSource("testCases")
+    @MethodSource("rocks.cleancode.conventionalcommit.ConventionalCommitTestCase#testCases")
     public void should_parse_conventional_commit_message(ConventionalCommitTestCase testCase) {
         ConventionalCommit conventionalCommit = parser.parse(testCase.message());
 
@@ -75,24 +69,6 @@ class ConventionalCommitParserTest {
         assertThat("Body", conventionalCommit.body().orElse(null), is(equalTo(testCase.expected().body())));
         assertThat("Footer", conventionalCommit.footer(), is(equalTo(testCase.expected().footer())));
         assertThat("Breaking change", conventionalCommit.breakingChange(), is(testCase.expected().breakingChange()));
-    }
-
-    private static Stream<ConventionalCommitTestCase> testCases() throws IOException {
-        InputStream testFileInputStream =
-                ConventionalCommitParserTest.class
-                        .getResourceAsStream("/test-cases.yaml");
-
-        TypeReference<List<ConventionalCommitTestCase>> testCasesType =
-                new TypeReference<List<ConventionalCommitTestCase>>() {
-                };
-
-        ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
-
-        return objectMapper.readValue(
-                        testFileInputStream,
-                        testCasesType
-                )
-                .stream();
     }
 
 }

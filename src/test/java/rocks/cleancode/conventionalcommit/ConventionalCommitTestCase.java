@@ -2,12 +2,37 @@ package rocks.cleancode.conventionalcommit;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public class ConventionalCommitTestCase {
+
+    public static Stream<ConventionalCommitTestCase> testCases() throws IOException {
+        InputStream testFileInputStream =
+            ConventionalCommitParserTest.class
+                .getResourceAsStream("/test-cases.yaml");
+
+        TypeReference<List<ConventionalCommitTestCase>> testCasesType =
+            new TypeReference<List<ConventionalCommitTestCase>>() {
+            };
+
+        ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
+
+        return objectMapper.readValue(
+                testFileInputStream,
+                testCasesType
+            )
+            .stream();
+    }
 
     public static class Expectation {
 
@@ -87,7 +112,7 @@ public class ConventionalCommitTestCase {
             @JsonProperty("expected") Expectation expectation
     ) {
         this.name = name;
-        this.message = message;
+        this.message = message.trim();
         this.expected = expectation;
     }
 
