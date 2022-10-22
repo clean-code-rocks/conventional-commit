@@ -2,7 +2,7 @@ package rocks.cleancode.conventionalcommit;
 
 import java.util.Optional;
 
-class ConventionalCommitParser {
+public class ConventionalCommitParser {
 
     public ConventionalCommit parse(String fullCommitMessage) {
         ConventionalCommitMessage message = new ConventionalCommitMessage(fullCommitMessage);
