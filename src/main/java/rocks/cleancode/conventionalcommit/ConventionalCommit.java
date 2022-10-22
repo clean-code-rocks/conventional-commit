@@ -7,13 +7,20 @@ import java.util.function.Predicate;
 import static java.lang.String.format;
 import static java.util.stream.Collectors.joining;
 
+/**
+ * <p>Conventional commit message representation.</p>
+ *
+ * <p>Based on specification <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits v1.0.0</a>.</p>
+ *
+ * @since 1.0.0
+ */
 public class ConventionalCommit {
 
-    public static final String EMPTY_STRING = "";
+    private static final String EMPTY_STRING = "";
 
-    public static final String NEWLINE = format("%n");
+    private static final String NEWLINE = format("%n");
 
-    public static final String DOUBLE_NEWLINE = NEWLINE + NEWLINE;
+    private static final String DOUBLE_NEWLINE = NEWLINE + NEWLINE;
 
     private final String type;
 
@@ -27,6 +34,18 @@ public class ConventionalCommit {
 
     private final Map<String, String> footer;
 
+    /**
+     * All arguments constructor.
+     *
+     * @param type Message type; must be one of the following values: fix, feat, build, chore, ci, docs, style, refactor, perf, or test
+     * @param scope Custom message scope; might be {@code null}
+     * @param exclamation {@code true} if exclamation mark appears in the message, {@code false} otherwise
+     * @param description Message description
+     * @param body Full message body, might be multiline
+     * @param footer Key/value list of additional data
+     *
+     * @since 1.0.0
+     */
     public ConventionalCommit(
         String type,
         String scope,
@@ -43,27 +62,69 @@ public class ConventionalCommit {
         this.footer = footer;
     }
 
+    /**
+     * Message type.
+     *
+     * @return Message type
+     *
+     * @since 1.0.0
+     */
     public String type() {
         return type;
     }
 
+    /**
+     * Message scope.
+     *
+     * @return {@link Optional} with message scope; empty if it does not exist
+     *
+     * @since 1.0.0
+     */
     public Optional<String> scope() {
         return Optional.ofNullable(scope);
     }
 
+    /**
+     * Message with exclamation mark.
+     *
+     * @return {@code true} if exclamation mark exists in message, {@code false} otherwise
+     *
+     * @since 1.0.0
+     */
     public boolean exclamation() {
         return exclamation;
     }
 
+    /**
+     * Message description.
+     *
+     * @return Message description
+     *
+     * @since 1.0.0
+     */
     public String description() {
         return description;
     }
 
+    /**
+     * Message body.
+     *
+     * @return {@link Optional} with message body; empty if it does not exist
+     *
+     * @since 1.0.0
+     */
     public Optional<String> body() {
         return Optional.ofNullable(body)
             .filter(this::isNotBlank);
     }
 
+    /**
+     * Key/value footer list.
+     *
+     * @return {@link Map} representing footer key/value
+     *
+     * @since 1.0.0
+     */
     public Map<String, String> footer() {
         return footer;
     }
@@ -79,10 +140,24 @@ public class ConventionalCommit {
             .isPresent();
     }
 
+    /**
+     * Indicator of breaking change.
+     *
+     * @return {@code true} if breaking change, {@code false} otherwise
+     *
+     * @since 1.0.0
+     */
     public boolean breakingChange() {
         return exclamation || footer.containsKey("BREAKING CHANGE");
     }
 
+    /**
+     * Generate conventional commit message.
+     *
+     * @return Conventional commit message
+     *
+     * @since 1.0.0
+     */
     @Override
     public String toString() {
         return format(
