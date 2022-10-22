@@ -4,6 +4,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+import static java.lang.String.format;
+
 public class ConventionalCommit {
 
     private final String type;
@@ -72,6 +74,16 @@ public class ConventionalCommit {
 
     public boolean breakingChange() {
         return exclamation || footer.containsKey("BREAKING CHANGE");
+    }
+
+    @Override
+    public String toString() {
+        return format(
+            "%s%s: %s",
+            type,
+            scope().map(scope -> format("(%s)", scope)).orElse(""),
+            description
+        );
     }
 
 }
