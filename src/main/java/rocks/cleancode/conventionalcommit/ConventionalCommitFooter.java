@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 import static java.lang.String.format;
 import static java.util.stream.Collectors.toMap;
 
-public class ConventionalCommitFooter {
+class ConventionalCommitFooter {
 
     private static final String NEWLINE_REGEX = "\\r?\\n";
 
