@@ -100,7 +100,7 @@ public class ConventionalCommit {
 
     private String scopeToString() {
         return scope()
-            .map(surrounded("(", ")"))
+            .map(surroundScope())
             .orElse(EMPTY_STRING);
     }
 
@@ -129,8 +129,8 @@ public class ConventionalCommit {
         return entry -> format("%s%s%s", entry.getKey(), ": ", entry.getValue());
     }
 
-    private Function<String, String> surrounded(String prefix, String suffix) {
-        return input -> format("%s%s%s", prefix, input, suffix);
+    private Function<String, String> surroundScope() {
+        return input -> format("(%s)", input);
     }
 
 }
