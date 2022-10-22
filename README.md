@@ -22,7 +22,10 @@ Java 8+
 
 ## Usage
 
+### Parse conventional commit message
+
 ```java
+import rocks.cleancode.conventionalcommit.ConventionalCommit;
 import rocks.cleancode.conventionalcommit.ConventionalCommitParser;
 
 ConventionalCommitParser parser = new ConventionalCommitParser();
@@ -31,4 +34,23 @@ ConventionalCommit conventionalCommit = parser.parse("feat: My new feature");
 
 String type = conventionalCommit.type(); // is equal to "feat"
 String description = conventionalCommit.description(); // is equal to "My new feature"
+```
+
+### Generate conventional commit message
+
+```java
+import java.util.HashMap;
+
+import rocks.cleancode.conventionalcommit.ConventionalCommit;
+
+ConventionalCommit conventionalCommit = new ConventionalCommit(
+    "feat",
+    null,
+    false,
+    "My new feature",
+    null,
+    new HashMap<>()
+);
+
+String conventionalCommitMessage = conventionalCommit.toString();
 ```
