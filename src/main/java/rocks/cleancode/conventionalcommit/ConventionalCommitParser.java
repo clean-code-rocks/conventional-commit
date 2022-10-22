@@ -1,5 +1,7 @@
 package rocks.cleancode.conventionalcommit;
 
+import java.util.Optional;
+
 class ConventionalCommitParser {
 
     public ConventionalCommit parse(String fullCommitMessage) {
@@ -13,8 +15,11 @@ class ConventionalCommitParser {
     }
 
     private String body(String fullCommitMessage, ConventionalCommitMessage message, ConventionalCommitFooter footer) {
+        String rawMessage = Optional.ofNullable(message.raw()).orElse("");
+        String rawFooter = Optional.ofNullable(footer.raw()).orElse("");
+
         return fullCommitMessage
-                .substring(message.raw().length(), fullCommitMessage.length() - footer.raw().length())
+                .substring(rawMessage.length(), fullCommitMessage.length() - rawFooter.length())
                 .trim();
     }
 
