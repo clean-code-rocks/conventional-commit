@@ -1,0 +1,121 @@
+- name: Simple message
+  message: |
+    feat: My new feature
+  expected:
+    type: feat
+    description: My new feature
+
+- name: Simple message with scope
+  message: |
+    feat(my-scope): My new feature
+  expected:
+    type: feat
+    scope: my-scope
+    description: My new feature
+
+- name: Breaking change with exclamation
+  message: |
+    fix!: This is a breaking change
+  expected:
+    type: fix
+    exclamation: true
+    breaking-change: true
+    description: This is a breaking change
+
+- name: Breaking change with scope and exclamation
+  message: |
+    fix(my-scope)!: This is a breaking change
+  expected:
+    type: fix
+    scope: my-scope
+    exclamation: true
+    breaking-change: true
+    description: This is a breaking change
+
+- name: With body
+  message: |
+    feat: My new feature
+    
+    This body contains the description
+    of the new feature
+    
+    And this paragraph is for some more
+    check
+  expected:
+    type: feat
+    description: My new feature
+    body: |
+      This body contains the description
+      of the new feature
+      
+      And this paragraph is for some more
+      check
+
+- name: With footer
+  message: |
+    feat: My new feature
+    
+    Reviewed-by: John DOE
+    Refs: #123
+  expected:
+    type: feat
+    description: My new feature
+    footer:
+      Reviewed-by: John DOE
+      Refs: "#123"
+
+- name: Breaking change with footer
+  message: |
+    fix: Breaking change in the footer
+    
+    Reviewed-by: John DOE
+    BREAKING CHANGE: This footer describes the breaking change
+  expected:
+    type: fix
+    description: Breaking change in the footer
+    breaking-change: true
+    footer:
+      Reviewed-by: John DOE
+      BREAKING CHANGE: This footer describes the breaking change
+
+- name: Body with colon (:)
+  message: |
+    ci: Added CI workflow
+    
+    This message contains a colon for a
+    more precise description
+    
+    For testing : it must be in the body
+  expected:
+    type: ci
+    description: Added CI workflow
+    body: |
+      This message contains a colon for a
+      more precise description
+      
+      For testing : it must be in the body
+
+- name: With body and footer
+  message: |
+    feat: My new feature
+    
+    This body contains the description
+    of the new feature
+    
+    And this paragraph is for some more
+    check
+    
+    Reviewed-by: John DOE
+    Refs: #123
+  expected:
+    type: feat
+    description: My new feature
+    body: |
+      This body contains the description
+      of the new feature
+      
+      And this paragraph is for some more
+      check
+    footer:
+      Reviewed-by: John DOE
+      Refs: "#123"
