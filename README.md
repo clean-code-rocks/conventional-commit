@@ -1,5 +1,7 @@
 # Conventional commit
 
+[![Maven Central](https://img.shields.io/maven-central/v/rocks.cleancode/conventional-commit?color=brightgreen)](https://search.maven.org/artifact/rocks.cleancode/conventional-commit)
+[![javadoc](https://javadoc.io/badge2/rocks.cleancode/conventional-commit/javadoc.svg)](https://javadoc.io/doc/rocks.cleancode/conventional-commit)
 [![codecov](https://codecov.io/gh/clean-code-rocks/conventional-commit/branch/main/graph/badge.svg?token=QQXYU45M13)](https://codecov.io/gh/clean-code-rocks/conventional-commit)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fclean-code-rocks%2Fconventional-commit.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fclean-code-rocks%2Fconventional-commit?ref=badge_shield)
