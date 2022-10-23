@@ -3,6 +3,8 @@ package rocks.cleancode.conventionalcommit;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +12,7 @@ import java.util.Map;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ConventionalCommitTest {
 
@@ -62,6 +65,26 @@ class ConventionalCommitTest {
         assertThat(conventionalCommit.description(), is(equalTo("My feature description")));
         assertThat(conventionalCommit.body().isPresent(), is(false));
         assertThat(conventionalCommit.footer(), is(equalTo(new HashMap<>())));
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = { " ", "\n", "\t" })
+    public void should_throw_illegal_argument_exception_when_type_is_missing(String type) {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> new ConventionalCommit(type, "My description")
+        );
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = { " ", "\n", "\t" })
+    public void should_throw_illegal_argument_exception_when_description_is_missing(String description) {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> new ConventionalCommit("feat", description)
+        );
     }
 
 }

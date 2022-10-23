@@ -177,6 +177,7 @@ public class ConventionalCommit {
      * @param description Message description
      * @param body Full message body, might be multiline
      * @param footer Key/value list of additional data
+     * @throws IllegalStateException If type or description is {@code null} or empty
      *
      * @since 1.0.0
      */
@@ -188,6 +189,14 @@ public class ConventionalCommit {
         String body,
         Map<String, String> footer
     ) {
+        if (type == null || type.trim().isEmpty()) {
+            throw new IllegalArgumentException("Type is missing or empty");
+        }
+
+        if (description == null || description.trim().isEmpty()) {
+            throw new IllegalArgumentException("Description is missing or empty");
+        }
+
         this.type = type;
         this.scope = scope;
         this.exclamation = exclamation;
@@ -201,6 +210,7 @@ public class ConventionalCommit {
      *
      * @param type Message type; must be one of the following values: fix, feat, build, chore, ci, docs, style, refactor, perf, or test
      * @param description Message description
+     * @throws IllegalStateException If type or description is {@code null} or empty
      *
      * @since 1.1.0
      */
