@@ -188,6 +188,14 @@ public class ConventionalCommit {
         String body,
         Map<String, String> footer
     ) {
+        if (type == null) {
+            throw new IllegalArgumentException("Type is missing");
+        }
+
+        if (description == null) {
+            throw new IllegalArgumentException("Description is missing");
+        }
+
         this.type = type;
         this.scope = scope;
         this.exclamation = exclamation;

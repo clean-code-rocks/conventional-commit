@@ -10,6 +10,7 @@ import java.util.Map;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ConventionalCommitTest {
 
@@ -62,6 +63,22 @@ class ConventionalCommitTest {
         assertThat(conventionalCommit.description(), is(equalTo("My feature description")));
         assertThat(conventionalCommit.body().isPresent(), is(false));
         assertThat(conventionalCommit.footer(), is(equalTo(new HashMap<>())));
+    }
+
+    @Test
+    public void should_throw_illegal_argument_exception_when_type_is_missing() {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> new ConventionalCommit(null, "My description")
+        );
+    }
+
+    @Test
+    public void should_throw_illegal_argument_exception_when_description_is_missing() {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> new ConventionalCommit("feat", null)
+        );
     }
 
 }
