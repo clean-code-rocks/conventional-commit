@@ -188,8 +188,8 @@ public class ConventionalCommit {
         String body,
         Map<String, String> footer
     ) {
-        if (type == null) {
-            throw new IllegalArgumentException("Type is missing");
+        if (type == null || type.trim().isEmpty()) {
+            throw new IllegalArgumentException("Type is missing or empty");
         }
 
         if (description == null || description.trim().isEmpty()) {

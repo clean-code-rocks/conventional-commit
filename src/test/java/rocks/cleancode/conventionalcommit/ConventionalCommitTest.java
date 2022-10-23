@@ -67,11 +67,13 @@ class ConventionalCommitTest {
         assertThat(conventionalCommit.footer(), is(equalTo(new HashMap<>())));
     }
 
-    @Test
-    public void should_throw_illegal_argument_exception_when_type_is_missing() {
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = { " ", "\n", "\t" })
+    public void should_throw_illegal_argument_exception_when_type_is_missing(String type) {
         assertThrows(
             IllegalArgumentException.class,
-            () -> new ConventionalCommit(null, "My description")
+            () -> new ConventionalCommit(type, "My description")
         );
     }
 
