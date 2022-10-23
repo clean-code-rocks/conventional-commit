@@ -1,5 +1,6 @@
 package rocks.cleancode.conventionalcommit;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -21,6 +22,139 @@ public class ConventionalCommit {
     private static final String NEWLINE = format("%n");
 
     private static final String DOUBLE_NEWLINE = NEWLINE + NEWLINE;
+
+    /**
+     * Builder to ease conventional commit creation.
+     *
+     * @since 1.1.0
+     */
+    public static class Builder {
+
+        private String type;
+
+        private String scope;
+
+        private boolean exclamation;
+
+        private String description;
+
+        private String body;
+
+        private final Map<String, String> footer;
+
+        /**
+         * Default constructor.
+         *
+         * @since 1.1.0
+         */
+        public Builder() {
+            this.footer = new HashMap<>();
+        }
+
+        /**
+         * Message type.
+         *
+         * @param type Message type
+         * @return Current builder instance
+         *
+         * @since 1.1.0
+         */
+        public Builder type(String type) {
+            this.type = type;
+
+            return this;
+        }
+
+        /**
+         * Message scope.
+         *
+         * @param scope Message scope
+         * @return Current builder instance
+         *
+         * @since 1.1.0
+         */
+        public Builder scope(String scope) {
+            this.scope = scope;
+
+            return this;
+        }
+
+        /**
+         * Message with exclamation mark.
+         *
+         * @param exclamation {@code true} to set exclamation mark in message, {@code false} otherwise
+         * @return Current builder instance
+         *
+         * @since 1.1.0
+         */
+        public Builder exclamation(boolean exclamation) {
+            this.exclamation = exclamation;
+
+            return this;
+        }
+
+        /**
+         * Message description.
+         *
+         * @param description Message description
+         * @return Current builder instance
+         *
+         * @since 1.1.0
+         */
+        public Builder description(String description) {
+            this.description = description;
+
+            return this;
+        }
+
+        /**
+         * Message body.
+         *
+         * @param body Message body
+         * @return Current builder instance
+         *
+         * @since 1.1.0
+         */
+        public Builder body(String body) {
+            this.body = body;
+
+            return this;
+        }
+
+        /**
+         * Add footer to message.
+         *
+         * @param key Key of the footer entry
+         * @param value Value of the footer entry
+         * @return Current builder instance
+         *
+         * @since 1.1.0
+         */
+        public Builder footer(String key, String value) {
+            this.footer.put(key, value);
+
+            return this;
+        }
+
+        /**
+         * Build the conventional commit with the given values.
+         *
+         * @return Conventional commit
+         *
+         * @since 1.1.0
+         */
+        public ConventionalCommit build() {
+            return new ConventionalCommit(
+                type,
+                scope,
+                exclamation,
+                description,
+                body,
+                footer
+            );
+        }
+
+    }
 
     private final String type;
 
