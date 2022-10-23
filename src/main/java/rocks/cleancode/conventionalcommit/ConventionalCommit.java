@@ -192,8 +192,8 @@ public class ConventionalCommit {
             throw new IllegalArgumentException("Type is missing");
         }
 
-        if (description == null) {
-            throw new IllegalArgumentException("Description is missing");
+        if (description == null || description.trim().isEmpty()) {
+            throw new IllegalArgumentException("Description is missing or empty");
         }
 
         this.type = type;

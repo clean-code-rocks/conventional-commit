@@ -3,6 +3,8 @@ package rocks.cleancode.conventionalcommit;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -73,11 +75,13 @@ class ConventionalCommitTest {
         );
     }
 
-    @Test
-    public void should_throw_illegal_argument_exception_when_description_is_missing() {
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = { " ", "\n", "\t" })
+    public void should_throw_illegal_argument_exception_when_description_is_missing(String description) {
         assertThrows(
             IllegalArgumentException.class,
-            () -> new ConventionalCommit("feat", null)
+            () -> new ConventionalCommit("feat", description)
         );
     }
 
