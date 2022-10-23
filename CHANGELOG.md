@@ -5,6 +5,7 @@
 ### Features
 
 - Conventional commit builder and simple constructor
+- Check required arguments `type` and `description`
 
 ## [1.0.0] - 2022-10-22
 
