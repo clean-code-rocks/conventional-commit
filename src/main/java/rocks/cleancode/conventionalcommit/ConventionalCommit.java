@@ -197,6 +197,21 @@ public class ConventionalCommit {
     }
 
     /**
+     * Simple constructor.
+     *
+     * @param type Message type; must be one of the following values: fix, feat, build, chore, ci, docs, style, refactor, perf, or test
+     * @param description Message description
+     *
+     * @since 1.1.0
+     */
+    public ConventionalCommit(
+        String type,
+        String description
+    ) {
+        this(type, null, false, description, null, new HashMap<>());
+    }
+
+    /**
      * Message type.
      *
      * @return Message type

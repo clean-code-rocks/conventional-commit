@@ -52,4 +52,16 @@ class ConventionalCommitTest {
         assertThat(conventionalCommit.footer(), is(equalTo(expectedFooter)));
     }
 
+    @Test
+    public void should_create_simple_conventional_commit() {
+        ConventionalCommit conventionalCommit = new ConventionalCommit("feat", "My feature description");
+
+        assertThat(conventionalCommit.type(), is(equalTo("feat")));
+        assertThat(conventionalCommit.scope().isPresent(), is(false));
+        assertThat(conventionalCommit.exclamation(), is(false));
+        assertThat(conventionalCommit.description(), is(equalTo("My feature description")));
+        assertThat(conventionalCommit.body().isPresent(), is(false));
+        assertThat(conventionalCommit.footer(), is(equalTo(new HashMap<>())));
+    }
+
 }
