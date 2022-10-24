@@ -23,3 +23,19 @@ jobs:
 
       - name: Test with Maven
         run: mvn --batch-mode clean compile test
+
+      - name: Summary
+        run: |
+          awk -F ',' '{                                                             \
+            missed_lines += $8;                                                     \
+            covered_lines += $9;                                                    \
+            tracked_lines += $8 + $9;                                               \
+          }; END {                                                                  \
+            printf "| Coverage | Tracked lines | Covered lines | Missed lines |\n"; \
+            printf "| -------: | ------------: | ------------: | -----------: |\n"; \
+            printf "|      %d% |            %d |            %d |           %d |\n", \
+                   100 * covered_lines / tracked_lines,                             \
+                   tracked_lines,                                                   \
+                   covered_lines,                                                   \
+                   missed_lines;                                                    \
+          }' target/site/jacoco/jacoco.csv >> $GITHUB_STEP_SUMMARY
