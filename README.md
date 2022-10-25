@@ -40,6 +40,21 @@ String description = conventionalCommit.description(); // is equal to "My new fe
 
 ### Generate conventional commit message
 
+#### Simple constructor
+
+```java
+import rocks.cleancode.conventionalcommit.ConventionalCommit;
+
+ConventionalCommit conventionalCommit = new ConventionalCommit(
+    "feat",
+    "My feature description"
+);
+
+String conventionalCommitMessage = conventionalCommit.toString();
+```
+
+#### All arguments constructor
+
 ```java
 import java.util.HashMap;
 
@@ -53,6 +68,24 @@ ConventionalCommit conventionalCommit = new ConventionalCommit(
     null,
     new HashMap<>()
 );
+
+String conventionalCommitMessage = conventionalCommit.toString();
+```
+
+#### Builder
+
+```java
+import rocks.cleancode.conventionalcommit.ConventionalCommit;
+
+ConventionalCommit conventionalCommit = new ConventionalCommit.Builder()
+        .type("feat")
+        .scope("feature-scope")
+        .exclamation(true)
+        .description("My feature description")
+        .body("Full feature description")
+        .footer("Reviewed-by", "John DOE")
+        .footer("Refs", "#123")
+        .build();
 
 String conventionalCommitMessage = conventionalCommit.toString();
 ```
