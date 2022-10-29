@@ -9,8 +9,6 @@ import static java.util.stream.Collectors.joining;
 
 class ConventionalCommitMessage {
 
-    private static final String TYPE_REGEX = "(fix|feat|build|chore|ci|docs|style|refactor|perf|test)";
-
     private static final String SCOPE_REGEX = "(?:\\((.+)\\))";
 
     private static final String EXCLAMATION_REGEX = "(!)";
