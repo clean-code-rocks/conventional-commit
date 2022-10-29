@@ -179,7 +179,7 @@ public class ConventionalCommit {
      * @param description Message description
      * @param body Full message body, might be multiline
      * @param footer Key/value list of additional data
-     * @throws IllegalStateException If type or description is {@code null} or empty
+     * @throws IllegalArgumentException If type or description is {@code null} or empty
      *
      * @since 1.0.0
      */
@@ -213,7 +213,7 @@ public class ConventionalCommit {
      * @param type Message type; recommended values: {@code fix}, {@code feat}, {@code build}, {@code chore},
      *             {@code ci}, {@code docs}, {@code style}, {@code refactor}, {@code perf} or {@code test}
      * @param description Message description
-     * @throws IllegalStateException If type or description is {@code null} or empty
+     * @throws IllegalArgumentException If type or description is {@code null} or empty
      *
      * @since 1.1.0
      */
