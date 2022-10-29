@@ -5,6 +5,7 @@
 ### Features
 
 - If `footer` constructor argument is `null`, set empty Map
+- Allow message types customization
 
 ## [1.1.0] - 20220-10-25
 
