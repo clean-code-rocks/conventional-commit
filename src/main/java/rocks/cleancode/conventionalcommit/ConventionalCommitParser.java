@@ -11,6 +11,13 @@ import java.util.Optional;
  */
 public class ConventionalCommitParser {
 
+    /**
+     * Recommended types in <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits v1.0.0</a>:
+     * {@code fix}, {@code feat}, {@code build}, {@code chore}, {@code ci}, {@code docs}, {@code style},
+     * {@code refactor}, {@code perf} or {@code test}
+     *
+     * @since 1.2.0
+     */
     public static final String[] RECOMMENDED_TYPES = {
         "fix",
         "feat",
@@ -35,6 +42,13 @@ public class ConventionalCommitParser {
         this(RECOMMENDED_TYPES);
     }
 
+    /**
+     * Constructor with allowed types.
+     *
+     * @param types List of allowed types
+     *
+     * @since 1.2.0
+     */
     public ConventionalCommitParser(String... types) {
         this.types = types;
     }
