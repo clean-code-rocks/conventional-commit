@@ -1,5 +1,6 @@
 package rocks.cleancode.conventionalcommit;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -203,7 +204,7 @@ public class ConventionalCommit {
         this.exclamation = exclamation;
         this.description = description;
         this.body = body;
-        this.footer = footer;
+        this.footer = Optional.ofNullable(footer).orElseGet(Collections::emptyMap);
     }
 
     /**
