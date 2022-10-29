@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.collection.IsMapWithSize.anEmptyMap;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -85,6 +86,20 @@ class ConventionalCommitTest {
             IllegalArgumentException.class,
             () -> new ConventionalCommit("feat", description)
         );
+    }
+
+    @Test
+    public void should_return_empty_map_when_null_is_given_as_footer() {
+        ConventionalCommit conventionalCommit = new ConventionalCommit(
+            "feat",
+            "feature-scope",
+            false,
+            "My new feature",
+            "Feature full description",
+            null
+        );
+
+        assertThat(conventionalCommit.footer(), is(anEmptyMap()));
     }
 
 }
