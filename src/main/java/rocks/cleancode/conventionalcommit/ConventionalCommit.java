@@ -171,7 +171,8 @@ public class ConventionalCommit {
     /**
      * All arguments constructor.
      *
-     * @param type Message type; recommended values: fix, feat, build, chore, ci, docs, style, refactor, perf, or test
+     * @param type Message type; recommended values: {@code fix}, {@code feat}, {@code build}, {@code chore},
+     *             {@code ci}, {@code docs}, {@code style}, {@code refactor}, {@code perf} or {@code test}
      * @param scope Custom message scope; might be {@code null}
      * @param exclamation {@code true} if exclamation mark appears in the message, {@code false} otherwise
      * @param description Message description
@@ -208,7 +209,8 @@ public class ConventionalCommit {
     /**
      * Simple constructor.
      *
-     * @param type Message type; recommended values: fix, feat, build, chore, ci, docs, style, refactor, perf, or test
+     * @param type Message type; recommended values: {@code fix}, {@code feat}, {@code build}, {@code chore},
+     *             {@code ci}, {@code docs}, {@code style}, {@code refactor}, {@code perf} or {@code test}
      * @param description Message description
      * @throws IllegalStateException If type or description is {@code null} or empty
      *
