@@ -11,6 +11,19 @@ import java.util.Optional;
  */
 public class ConventionalCommitParser {
 
+    public static final String[] RECOMMENDED_TYPES = {
+        "fix",
+        "feat",
+        "build",
+        "chore",
+        "ci",
+        "docs",
+        "style",
+        "refactor",
+        "perf",
+        "test"
+    };
+
     private final String[] types;
 
     /**
@@ -19,7 +32,7 @@ public class ConventionalCommitParser {
      * @since 1.0.0
      */
     public ConventionalCommitParser() {
-        this("fix", "feat", "build", "chore", "ci", "docs", "style", "refactor", "perf", "test");
+        this(RECOMMENDED_TYPES);
     }
 
     public ConventionalCommitParser(String... types) {
