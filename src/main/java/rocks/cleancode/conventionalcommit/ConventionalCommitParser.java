@@ -5,7 +5,7 @@ import java.util.Optional;
 /**
  * <p>Conventional commit message parser.</p>
  *
- * <p>Based on specification <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits v1.0.0</a>.</p>
+ * Based on specification <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits v1.0.0</a>.
  *
  * @since 1.0.0
  */
@@ -66,14 +66,18 @@ public class ConventionalCommitParser {
                 .trim();
     }
 
-    private ConventionalCommit conventionalCommit(ConventionalCommitMessage message, String body, ConventionalCommitFooter footer) {
+    private ConventionalCommit conventionalCommit(
+        ConventionalCommitMessage message,
+        String body,
+        ConventionalCommitFooter footer
+    ) {
         return new ConventionalCommit(
-                message.type(),
-                message.scope(),
-                message.exclamation(),
-                message.description(),
-                body,
-                footer.footer()
+            message.type(),
+            message.scope(),
+            message.exclamation(),
+            message.description(),
+            body,
+            footer.footer()
         );
     }
 
