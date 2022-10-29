@@ -11,12 +11,19 @@ import java.util.Optional;
  */
 public class ConventionalCommitParser {
 
+    private final String[] types;
+
     /**
      * Default constructor.
      *
      * @since 1.0.0
      */
     public ConventionalCommitParser() {
+        this("fix", "feat", "build", "chore", "ci", "docs", "style", "refactor", "perf", "test");
+    }
+
+    public ConventionalCommitParser(String... types) {
+        this.types = types;
     }
 
     /**
@@ -28,7 +35,7 @@ public class ConventionalCommitParser {
      * @since 1.0.0
      */
     public ConventionalCommit parse(String fullCommitMessage) {
-        ConventionalCommitMessage message = new ConventionalCommitMessage(fullCommitMessage);
+        ConventionalCommitMessage message = new ConventionalCommitMessage(types, fullCommitMessage);
 
         ConventionalCommitFooter footer = new ConventionalCommitFooter(fullCommitMessage);
 
