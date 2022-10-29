@@ -314,7 +314,19 @@ public class ConventionalCommit {
     }
 
     /**
-     * Generate conventional commit message.
+     * <p>Generate conventional commit message.</p>
+     *
+     * For example:
+     *
+     * <pre><code>
+     * feat: This is my new feature
+     *
+     * Some more details to describe the newly added
+     * functionality.
+     *
+     * Reviewed-by: Me
+     * Refs: #123
+     * </code></pre>
      *
      * @return Conventional commit message
      *
