@@ -300,7 +300,10 @@ public class ConventionalCommit {
     }
 
     /**
-     * Indicator of breaking change.
+     * <p>Indicator of breaking change.</p>
+     *
+     * A breaking change is identified by a "!" after the type/scope of the message,
+     * or by a footer entry "BREAKING CHANGE"
      *
      * @return {@code true} if breaking change, {@code false} otherwise
      *
