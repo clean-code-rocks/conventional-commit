@@ -171,7 +171,8 @@ public class ConventionalCommit {
     /**
      * All arguments constructor.
      *
-     * @param type Message type; must be one of the following values: fix, feat, build, chore, ci, docs, style, refactor, perf, or test
+     * @param type Message type; recommended values: {@code fix}, {@code feat}, {@code build}, {@code chore},
+     *             {@code ci}, {@code docs}, {@code style}, {@code refactor}, {@code perf} or {@code test}
      * @param scope Custom message scope; might be {@code null}
      * @param exclamation {@code true} if exclamation mark appears in the message, {@code false} otherwise
      * @param description Message description
@@ -208,7 +209,8 @@ public class ConventionalCommit {
     /**
      * Simple constructor.
      *
-     * @param type Message type; must be one of the following values: fix, feat, build, chore, ci, docs, style, refactor, perf, or test
+     * @param type Message type; recommended values: {@code fix}, {@code feat}, {@code build}, {@code chore},
+     *             {@code ci}, {@code docs}, {@code style}, {@code refactor}, {@code perf} or {@code test}
      * @param description Message description
      * @throws IllegalStateException If type or description is {@code null} or empty
      *
@@ -300,7 +302,10 @@ public class ConventionalCommit {
     }
 
     /**
-     * Indicator of breaking change.
+     * <p>Indicator of breaking change.</p>
+     *
+     * A breaking change is identified by a "!" after the type/scope of the message,
+     * or by a footer entry "BREAKING CHANGE"
      *
      * @return {@code true} if breaking change, {@code false} otherwise
      *
@@ -311,7 +316,19 @@ public class ConventionalCommit {
     }
 
     /**
-     * Generate conventional commit message.
+     * <p>Generate conventional commit message.</p>
+     *
+     * For example:
+     *
+     * <pre><code>
+     * feat: This is my new feature
+     *
+     * Some more details to describe the newly added
+     * functionality.
+     *
+     * Reviewed-by: Me
+     * Refs: #123
+     * </code></pre>
      *
      * @return Conventional commit message
      *
