@@ -1,13 +1,18 @@
 # Changelog
 
-## [Unreleased]
+## [1.2.0] - 2022-10-31
 
 ### Features
 
 - If `footer` constructor argument is `null`, set empty Map
 - Allow message types customization
 
-## [1.1.0] - 20220-10-25
+### Documentation
+
+- Add more details in [Javadoc]
+- Fix various typo errors in [README] and [Javadoc]
+
+## [1.1.0] - 2022-10-25
 
 ### Features
 
@@ -21,6 +26,9 @@
 - Conventional commit parser
 - Conventional commit generator
 
-[Unreleased]: https://github.com/clean-code-rocks/conventional-commit/compare/v1.1.0...main
+[1.2.0]: https://github.com/clean-code-rocks/conventional-commit/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/clean-code-rocks/conventional-commit/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/clean-code-rocks/conventional-commit/releases/tag/v1.0.0
+
+[Javadoc]: https://javadoc.io/doc/rocks.cleancode/conventional-commit
+[README]: https://github.com/clean-code-rocks/conventional-commit#readme
