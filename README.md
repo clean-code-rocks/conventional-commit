@@ -18,7 +18,7 @@ Java 8+
 <dependency>
     <groupId>rocks.cleancode</groupId>
     <artifactId>conventional-commit</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 
@@ -30,12 +30,18 @@ Java 8+
 import rocks.cleancode.conventionalcommit.ConventionalCommit;
 import rocks.cleancode.conventionalcommit.ConventionalCommitParser;
 
-ConventionalCommitParser parser = new ConventionalCommitParser();
+ConventionalCommitParser parser = new ConventionalCommitParser(); // Recommended types are used
 
 ConventionalCommit conventionalCommit = parser.parse("feat: My new feature");
 
 String type = conventionalCommit.type(); // is equal to "feat"
 String description = conventionalCommit.description(); // is equal to "My new feature"
+```
+
+To use custom types, the parser constructor with types list can be used:
+
+```java
+ConventionalCommitParser parser = new ConventionalCommitParser("type1", "type2");
 ```
 
 ### Generate conventional commit message
