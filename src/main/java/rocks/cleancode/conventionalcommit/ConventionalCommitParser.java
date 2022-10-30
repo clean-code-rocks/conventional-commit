@@ -34,7 +34,7 @@ public class ConventionalCommitParser {
     private final String[] types;
 
     /**
-     * Default constructor.
+     * Default constructor with types defined with {@link #RECOMMENDED_TYPES}.
      *
      * @since 1.0.0
      */
