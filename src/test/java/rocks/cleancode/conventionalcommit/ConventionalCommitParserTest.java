@@ -73,11 +73,13 @@ class ConventionalCommitParserTest {
 
     @Test
     public void should_parse_message_with_custom_type() {
-        ConventionalCommitParser parser = new ConventionalCommitParser("custom");
+        ConventionalCommitParser parser = new ConventionalCommitParser("custom1", "custom2");
 
-        ConventionalCommit conventionalCommit = parser.parse("custom: My message with custom type");
+        ConventionalCommit firstCommit = parser.parse("custom1: My message with first custom type");
+        ConventionalCommit secondCommit = parser.parse("custom2: My message with second custom type");
 
-        assertThat(conventionalCommit.type(), is(equalTo("custom")));
+        assertThat(firstCommit.type(), is(equalTo("custom1")));
+        assertThat(secondCommit.type(), is(equalTo("custom2")));
     }
 
 }
