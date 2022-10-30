@@ -177,7 +177,7 @@ public class ConventionalCommit {
      * @param exclamation {@code true} if exclamation mark appears in the message, {@code false} otherwise
      * @param description Message description
      * @param body Full message body, might be multiline
-     * @param footer Key/value list of additional data
+     * @param footer Key/value list of additional data. If {@code null}, an empty Map is set
      * @throws IllegalArgumentException If type or description is {@code null} or empty
      *
      * @since 1.0.0
