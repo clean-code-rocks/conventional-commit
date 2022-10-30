@@ -102,4 +102,25 @@ class ConventionalCommitTest {
         assertThat(conventionalCommit.footer(), is(anEmptyMap()));
     }
 
+    @Test
+    public void should_set_footer_as_unmodifiable_map() {
+        Map<String, String> footer = new HashMap<>();
+        footer.put("footer1", "value1");
+        footer.put("footer2", "value2");
+
+        ConventionalCommit conventionalCommit = new ConventionalCommit(
+            "feat",
+            "feature-scope",
+            false,
+            "My new feature",
+            "Feature full description",
+            footer
+        );
+
+        assertThrows(
+            UnsupportedOperationException.class,
+            () -> conventionalCommit.footer().put("new-footer", "new-value")
+        );
+    }
+
 }

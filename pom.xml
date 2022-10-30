@@ -6,7 +6,7 @@
 
     <groupId>rocks.cleancode</groupId>
     <artifactId>conventional-commit</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1-SNAPSHOT</version>
 
     <name>Conventional commit</name>
     <description>Tool to manage conventional commit messages</description>
