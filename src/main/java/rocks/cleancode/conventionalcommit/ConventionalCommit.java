@@ -203,7 +203,9 @@ public class ConventionalCommit {
         this.exclamation = exclamation;
         this.description = description;
         this.body = body;
-        this.footer = Optional.ofNullable(footer).orElseGet(Collections::emptyMap);
+        this.footer = Optional.ofNullable(footer)
+            .map(Collections::unmodifiableMap)
+            .orElseGet(Collections::emptyMap);
     }
 
     /**
