@@ -1,6 +1,12 @@
 package rocks.cleancode.conventionalcommit;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
+
+import static java.util.Arrays.asList;
+import static java.util.Collections.unmodifiableList;
 
 /**
  * <p>Conventional commit message parser.</p>
@@ -18,7 +24,7 @@ public class ConventionalCommitParser {
      *
      * @since 1.2.0
      */
-    public static final String[] RECOMMENDED_TYPES = {
+    public static final List<String> RECOMMENDED_TYPES = unmodifiableList(asList(
         "fix",
         "feat",
         "build",
@@ -29,9 +35,9 @@ public class ConventionalCommitParser {
         "refactor",
         "perf",
         "test"
-    };
+    ));
 
-    private final String[] types;
+    private final List<String> types;
 
     /**
      * Default constructor with types defined with {@link #RECOMMENDED_TYPES}.
@@ -50,6 +56,10 @@ public class ConventionalCommitParser {
      * @since 1.2.0
      */
     public ConventionalCommitParser(String... types) {
+        this.types = unmodifiableList(asList(types));
+    }
+
+    private ConventionalCommitParser(List<String> types) {
         this.types = types;
     }
 

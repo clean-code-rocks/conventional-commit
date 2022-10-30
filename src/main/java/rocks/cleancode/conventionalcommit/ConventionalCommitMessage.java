@@ -1,8 +1,8 @@
 package rocks.cleancode.conventionalcommit;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
 
 import static java.lang.String.format;
 import static java.util.stream.Collectors.joining;
@@ -25,7 +25,7 @@ class ConventionalCommitMessage {
 
     private final String description;
 
-    ConventionalCommitMessage(String[] types, String fullCommitMessage) {
+    ConventionalCommitMessage(List<String> types, String fullCommitMessage) {
         Pattern pattern = Pattern.compile(regex(types));
 
         Matcher matcher = pattern.matcher(fullCommitMessage);
@@ -61,7 +61,7 @@ class ConventionalCommitMessage {
         return description;
     }
 
-    private String regex(String[] types) {
+    private String regex(List<String> types) {
         return format(
             "^(%s%s?%s?: %s)",
             typesRegex(types),
@@ -71,8 +71,8 @@ class ConventionalCommitMessage {
         );
     }
 
-    private String typesRegex(String[] types) {
-        return Stream.of(types)
+    private String typesRegex(List<String> types) {
+        return types.stream()
             .collect(joining("|", "(", ")"));
     }
 
