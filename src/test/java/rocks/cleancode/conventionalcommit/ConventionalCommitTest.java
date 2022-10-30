@@ -14,6 +14,7 @@ import static org.hamcrest.collection.IsMapWithSize.anEmptyMap;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static rocks.cleancode.hamcrest.optional.ValueMatcher.value;
 
 class ConventionalCommitTest {
 
@@ -49,10 +50,10 @@ class ConventionalCommitTest {
         expectedFooter.put("Refs", "#123");
 
         assertThat(conventionalCommit.type(), is(equalTo("feat")));
-        assertThat(conventionalCommit.scope().get(), is(equalTo("feature-scope")));
+        assertThat(conventionalCommit.scope(), value(is(equalTo("feature-scope"))));
         assertThat(conventionalCommit.exclamation(), is(true));
         assertThat(conventionalCommit.description(), is(equalTo("My feature description")));
-        assertThat(conventionalCommit.body().get(), is(equalTo("Full feature description")));
+        assertThat(conventionalCommit.body(), value(is(equalTo("Full feature description"))));
         assertThat(conventionalCommit.footer(), is(equalTo(expectedFooter)));
     }
 
