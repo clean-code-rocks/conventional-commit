@@ -71,4 +71,15 @@ class ConventionalCommitParserTest {
         assertThat("Breaking change", conventionalCommit.breakingChange(), is(testCase.expected().breakingChange()));
     }
 
+    @Test
+    public void should_parse_message_with_custom_type() {
+        ConventionalCommitParser parser = new ConventionalCommitParser("custom1", "custom2");
+
+        ConventionalCommit firstCommit = parser.parse("custom1: My message with first custom type");
+        ConventionalCommit secondCommit = parser.parse("custom2: My message with second custom type");
+
+        assertThat(firstCommit.type(), is(equalTo("custom1")));
+        assertThat(secondCommit.type(), is(equalTo("custom2")));
+    }
+
 }
